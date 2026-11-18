@@ -7,17 +7,36 @@ const routes = {
 
 // Renderizar la vista correspondiente
 export function router() {
-    const path = normalizePath(window.location.pathname);
+    // Recuperar ruta guardada o utilizar la ruta actual
+    const savedPath = sessionStorage.getItem("spa_path");
+
+    let path;
+
+    if (savedPath) {
+        path = savedPath.split(/[?#]/)[0];
+        sessionStorage.removeItem("spa_path");
+    } else {
+        path = window.location.pathname;
+    }
+
+    // Normalizar la ruta
+    path = normalizePath(path);
+
     const app = document.querySelector("#app");
 
     const controller = routes[path];
 
     if (!controller) {
         app.innerHTML = `
-            <div class="container text-center mt-5">
-                <h1>404 - Página no encontrada</h1>
-            </div>
-        `;
+        <div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center text-center">
+            <h1>404 - Página no encontrada</h1>
+            <p>La página que buscas no existe.</p>
+
+            <a href="/" class="btn btn-primary mt-3">
+                Volver al inicio
+            </a>
+        </div>
+    `;
         return;
     }
 

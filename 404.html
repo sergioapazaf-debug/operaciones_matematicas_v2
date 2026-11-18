@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redireccionando...</title>
+</head>
+<body>
+
+    <script>
+        const path = window.location.pathname;
+        const search = window.location.search;
+        const hash = window.location.hash;
+
+        // Guardar la dirección original
+        sessionStorage.setItem("spa_path", path + search + hash);
+
+        // Redirigir al inicio de la aplicación
+        window.location.replace("/operaciones_matematicas_v2");
+    </script>
+
+</body>
+</html>
