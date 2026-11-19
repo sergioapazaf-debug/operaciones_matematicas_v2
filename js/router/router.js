@@ -16,6 +16,8 @@ export function router() {
     if (savedPath) {
         path = savedPath.split(/[?#]/)[0];
         sessionStorage.removeItem("spa_path");
+        // Restaurar la URL original en la barra de direcciones
+        history.replaceState(null, "", path);
     } else {
         path = window.location.pathname;
     }
