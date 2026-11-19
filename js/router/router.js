@@ -1,4 +1,5 @@
 import { MenuController } from "../modules/menu/controller.js";
+import { BASE_PATH } from "./config.js";
 
 // Definición de rutas
 const routes = {
@@ -32,7 +33,7 @@ export function router() {
             <h1>404 - Página no encontrada</h1>
             <p>La página que buscas no existe.</p>
 
-            <a href="/" class="btn btn-primary mt-3">
+            <a href="${BASE_PATH}/" class="btn btn-primary mt-3">
                 Volver al inicio
             </a>
         </div>
@@ -45,8 +46,6 @@ export function router() {
     // Registrar eventos del controlador, si los tiene
     controller.bindEvents?.();
 }
-
-const BASE_PATH = "/operaciones_matematicas_v2";
 
 // Normalizar rutas para eliminar el prefijo de GitHub Pages
 function normalizePath(path) {
